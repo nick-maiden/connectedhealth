@@ -46,7 +46,7 @@ steps:
 
 - script: |
     pushd '$(projectRoot)'
-    python manage.py test data/tests --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
+    python manage.py test data.tests --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
   displayName: 'Run tests'
 
 - task: PublishTestResults@2
@@ -54,3 +54,10 @@ steps:
     testResultsFiles: "**/TEST-*.xml"
     testRunTitle: 'Python $(PYTHON_VERSION)'
   condition: succeededOrFailed()
+
+- script: |
+    echo 'Current directory:'
+    pwd
+    echo 'Virtual environment:'
+    which python
+  displayName: 'Print current directory and virtual environment'
