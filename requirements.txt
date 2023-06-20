@@ -1,5 +1,5 @@
 azure_storage==0.37.0
-Django==4.1.7
+django==4.1.7
 djangorestframework==3.14.0
 numpy==1.22.4
 opencv_python==4.7.0.72
