@@ -37,19 +37,17 @@ steps:
       print('##vso[task.setvariable variable=projectRoot]{}'.format(project_location))
 
 - script: |
-    pip3 install virtualenv
+    pip install virtualenv
     virtualenv .env
     source .env/bin/activate
-
-- script: |
-    python -m pip3 install --upgrade pip setuptools wheel
-    pip3 install -r requirements.txt
-    pip3 install unittest-xml-reporting
+    python3 -m pip install --upgrade pip setuptools wheel
+    pip install -r requirements.txt
+    pip install unittest-xml-reporting
   displayName: 'Install prerequisites'
 
 - script: |
     pushd '$(projectRoot)'
-    python manage.py test data/tests --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
+    python3 manage.py test data/tests --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
   displayName: 'Run tests'
 
 - task: PublishTestResults@2
