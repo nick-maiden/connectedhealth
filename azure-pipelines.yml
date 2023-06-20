@@ -39,7 +39,7 @@ steps:
 - script: |
     source .env/bin/activate
     python --version
-displayName: 'Check Python version'
+  displayName: 'Check Python version'
 
 - script: |
     pip install virtualenv
