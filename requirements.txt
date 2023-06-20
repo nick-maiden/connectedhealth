@@ -1,4 +1,4 @@
-#azure_storage==0.37.0
+azure_storage==0.37.0
 django==4.1.7
 djangorestframework==3.14.0
 #numpy==1.22.4
