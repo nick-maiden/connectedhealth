@@ -38,7 +38,6 @@ steps:
 
 - script: |
     python -m venv .env
-    source .env/bin/activate
     python -m pip install --upgrade pip setuptools wheel
     pip install -r requirements.txt
     pip install unittest-xml-reporting
@@ -46,6 +45,7 @@ steps:
 
 - script: |
     pushd '$(projectRoot)'
+    source "$(projectRoot)/.env/bin/activate"
     python manage.py test data/tests --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
   displayName: 'Run tests'
 
