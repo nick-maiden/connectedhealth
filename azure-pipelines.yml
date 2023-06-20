@@ -28,7 +28,7 @@ steps:
       """Search all subdirectories for `manage.py`."""
       from glob import iglob
       from os import path
-      # Python >= 3.5
+      # Python >= 3.8
       manage_py = next(iglob(path.join('**', 'manage.py'), recursive=True), None)
       if not manage_py:
           raise SystemExit('Could not find a Django project')
@@ -37,17 +37,17 @@ steps:
       print('##vso[task.setvariable variable=projectRoot]{}'.format(project_location))
 
 - script: |
-    pip3 install virtualenv
+    pip install virtualenv
     virtualenv .env
     source .env/bin/activate
-    python3 -m pip3 install --upgrade pip3 setuptools wheel
-    pip3 install -r requirements.txt
-    pip3 install unittest-xml-reporting
+    python -m pip install --upgrade pip setuptools wheel
+    pip install -r requirements.txt
+    pip install unittest-xml-reporting
   displayName: 'Install prerequisites'
 
 - script: |
     pushd '$(projectRoot)'
-    python3 manage.py test data/tests --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
+    python manage.py test data/tests --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
   displayName: 'Run tests'
 
 - task: PublishTestResults@2
