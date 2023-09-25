@@ -101,6 +101,7 @@ def session_init(request):
 @csrf_exempt
 def frames_upload(request):
     '''Receive frame data from the frontend and store this data persistently in the backend.'''
+    print("Hello")
     data = json.loads(request.body)
 
     uid = data.get('uid')
