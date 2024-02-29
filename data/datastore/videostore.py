@@ -59,7 +59,7 @@ class VideoStore:
         in cloud storage.     
         '''
         blob_client = get_blob_client(
-            const.AZ_CLIPS_CONTAINER_NAME, self.get_video_name())
+            const.AZ_VIDEOS_CONTAINER_NAME, self.get_video_name())
         if blob_client.exists():
             self.video_path = os.path.join(
                 tempfile.gettempdir(), self.get_video_name())
@@ -127,7 +127,7 @@ class VideoStore:
 
         # Upload the video to cloud
         blob_client = get_blob_client(
-            const.AZ_CLIPS_CONTAINER_NAME, video_name)
+            const.AZ_VIDEOS_CONTAINER_NAME, video_name)
         with open(video_name, "rb") as f:
             blob_client.upload_blob(f, overwrite=True)
 
@@ -138,7 +138,7 @@ class VideoStore:
     def delete(self):
         '''Delete the video file for a given clip from cloud storage.'''
         blob_client = get_blob_client(
-            const.AZ_CLIPS_CONTAINER_NAME, self.get_video_name())
+            const.AZ_VIDEOS_CONTAINER_NAME, self.get_video_name())
 
         if blob_client.exists():
             blob_client.delete_blob()
